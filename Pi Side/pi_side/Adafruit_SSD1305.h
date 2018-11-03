@@ -22,7 +22,7 @@ All text above, and the splash screen must be included in any redistribution
  #include "WProgram.h"
 #endif
 
-#include <Adafruit_GFX.h>
+#include "Adafruit_GFX.h"
 
 #define adagfx_swap(a, b) { uint8_t t = a; a = b; b = t; }
 
