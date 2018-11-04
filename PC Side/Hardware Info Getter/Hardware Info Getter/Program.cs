@@ -45,27 +45,33 @@ namespace Get_CPU_Temp5
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "CPU Package")
-                            CPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
+                            //CPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
+                            CPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString()+ "\r");
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name != "Bus Speed")
                         {
                             avgClockSum += (float)computer.Hardware[i].Sensors[j].Value;
                             coreTempSensorCount++;
                         }
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "CPU Total")
-                            CPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
+                           // CPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
+                           CPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString()+ "\r");
                     }
-                    CPU_Speed = ("CPU Clock: " + (avgClockSum / coreTempSensorCount) + " MHz" + "\r");
+                    //CPU_Speed = ("CPU Clock: " + (avgClockSum / coreTempSensorCount) + " MHz" + "\r");
+                    CPU_Speed = ((avgClockSum / coreTempSensorCount) + "\r");
                 }
                 if (computer.Hardware[i].HardwareType == HardwareType.GpuNvidia)
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "GPU Core")
-                            GPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
+                            //GPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
+                            GPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "GPU Core")
-                            GPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
+                            //GPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
+                            GPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name == "GPU Core")
-                            GPU_Speed = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " MHz" + "\r");
+                            //GPU_Speed = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " MHz" + "\r");
+                            GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                     }
                 }
             }
@@ -76,7 +82,7 @@ namespace Get_CPU_Temp5
             //Console.WriteLine(GPU_Speed);
             //Console.WriteLine(GPU_Load);
             string[] outputs = {CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
-            System.IO.File.WriteAllLines(@"D:\WriteLines.txt", outputs);
+            System.IO.File.WriteAllLines(@"D:\WriteOutputs.txt", outputs);
             computer.Close();
         }
         static void Main(string[] args)
