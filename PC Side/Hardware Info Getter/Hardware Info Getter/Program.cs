@@ -45,7 +45,7 @@ namespace Get_CPU_Temp5
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "CPU Package")
-                             CPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
+                            CPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name != "Bus Speed")
                         {
                             avgClockSum += (float)computer.Hardware[i].Sensors[j].Value;
@@ -69,12 +69,14 @@ namespace Get_CPU_Temp5
                     }
                 }
             }
-            Console.WriteLine(CPU_Temp);
-            Console.WriteLine(CPU_Speed);
-            Console.WriteLine(CPU_Load);
-            Console.WriteLine(GPU_Temp);
-            Console.WriteLine(GPU_Speed);
-            Console.WriteLine(GPU_Load);
+            //Console.WriteLine(CPU_Temp);
+            //Console.WriteLine(CPU_Speed);
+            //Console.WriteLine(CPU_Load);
+            //Console.WriteLine(GPU_Temp);
+            //Console.WriteLine(GPU_Speed);
+            //Console.WriteLine(GPU_Load);
+            string[] outputs = {CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
+            System.IO.File.WriteAllLines(@"D:\WriteLines.txt", outputs);
             computer.Close();
         }
         static void Main(string[] args)
