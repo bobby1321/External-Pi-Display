@@ -59,7 +59,7 @@ namespace Get_CPU_Temp5
                     //CPU_Speed = ("CPU Clock: " + (avgClockSum / coreTempSensorCount) + " MHz" + "\r");
                     CPU_Speed = ((avgClockSum / coreTempSensorCount) + "\r");
                 }
-                if (computer.Hardware[i].HardwareType == HardwareType.GpuNvidia)
+                else if (computer.Hardware[i].HardwareType == HardwareType.GpuNvidia)
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
@@ -74,7 +74,7 @@ namespace Get_CPU_Temp5
                             GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                     }
                 }
-                if (computer.Hardware[i].HardwareType == HardwareType.GpuAti)
+                else if (computer.Hardware[i].HardwareType == HardwareType.GpuAti)
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
