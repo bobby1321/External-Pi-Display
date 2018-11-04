@@ -74,6 +74,21 @@ namespace Get_CPU_Temp5
                             GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                     }
                 }
+                if (computer.Hardware[i].HardwareType == HardwareType.GpuAti)
+                {
+                    for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
+                    {
+                        if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "GPU Core")
+                            //GPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
+                            GPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
+                        if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "GPU Core")
+                            //GPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
+                            GPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
+                        if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name == "GPU Core")
+                            //GPU_Speed = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " MHz" + "\r");
+                            GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
+                    }
+                }
             }
             //Console.WriteLine(CPU_Temp);
             //Console.WriteLine(CPU_Speed);
