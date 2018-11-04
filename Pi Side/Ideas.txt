@@ -1,0 +1,2 @@
+1. Make pi delete log file when disconnected
+2. Create installer for .exe and .dll files so pi can be a contained unit (maybe?)
