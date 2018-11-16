@@ -114,13 +114,10 @@ namespace Get_CPU_Temp5
             //Console.WriteLine(GPU_Speed);
             //Console.WriteLine(GPU_Load);
             string[] outputs = {CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
-<<<<<<< HEAD
             //System.IO.File.WriteAllLines(@"D:\WriteOutputs.txt", outputs);
-=======
 
             //File Location can be changed
-            System.IO.File.WriteAllLines(@"D:\WriteOutputs.txt", outputs);
->>>>>>> e7bcaa494fa3af3405301f4bac460645dfad2e83
+
             computer.Close();
         }
         static void Main(string[] args)
