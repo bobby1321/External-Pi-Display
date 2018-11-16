@@ -40,73 +40,58 @@ namespace Get_CPU_Temp5
             String GPU_Load = "";
             for (int i = 0; i < computer.Hardware.Length; i++)
             {
-                //CPU Info
                 if (computer.Hardware[i].HardwareType == HardwareType.CPU)
                 {
                     float avgClockSum = 0;
                     int coreTempSensorCount = 0;
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
-                        //Package Temp
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "CPU Package")
                             //CPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
                             CPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString()+ "\r");
-                        //Average Clock Speed
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name != "Bus Speed")
                         {
                             avgClockSum += (float)computer.Hardware[i].Sensors[j].Value;
                             coreTempSensorCount++;
                         }
-                        //Load Percentages
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "CPU Total")
                            // CPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
                            CPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString()+ "\r");
                     }
-                    //Calculating Average CPU Clock Speeds across all cores
                     //CPU_Speed = ("CPU Clock: " + (avgClockSum / coreTempSensorCount) + " MHz" + "\r");
                     CPU_Speed = ((avgClockSum / coreTempSensorCount) + "\r");
                 }
-                //NVidia GPU Info
                 else if (computer.Hardware[i].HardwareType == HardwareType.GpuNvidia)
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
-                        //GPU Core Temp
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "GPU Core")
                             //GPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
                             GPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
-                        //GPU Core Load Percentage
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "GPU Core")
                             //GPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
                             GPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
-                        //GPU Clock Speed
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name == "GPU Core")
                             //GPU_Speed = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " MHz" + "\r");
                             GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                     }
                 }
-                //AMD GPU Info
                 else if (computer.Hardware[i].HardwareType == HardwareType.GpuAti)
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
-                        //GPU Core Temp
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "GPU Core")
                             //GPU_Temp = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " °C" + "\r");
                             GPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
-                        //GPU Core Load Percentage
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "GPU Core")
                             //GPU_Load = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " %" + "\r");
                             GPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
-                        //GPU Clock Speed
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name == "GPU Core")
                             //GPU_Speed = (computer.Hardware[i].Sensors[j].Name + ":" + computer.Hardware[i].Sensors[j].Value.ToString() + " MHz" + "\r");
                             GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                     }
                 }
             }
-            //Writing to a document
-
             //Console.WriteLine(CPU_Temp);
             //Console.WriteLine(CPU_Speed);
             //Console.WriteLine(CPU_Load);
@@ -115,9 +100,12 @@ namespace Get_CPU_Temp5
             //Console.WriteLine(GPU_Load);
             string[] outputs = {CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
             //System.IO.File.WriteAllLines(@"D:\WriteOutputs.txt", outputs);
+<<<<<<< HEAD
 
             //File Location can be changed
 
+=======
+>>>>>>> parent of ad344c3... Merge branch 'master' of https://github.com/bobby1321/External-Pi-Display
             computer.Close();
         }
         static void Main(string[] args)
@@ -137,8 +125,6 @@ namespace Get_CPU_Temp5
             while (true)
             {
                 GetSystemInfo();
-
-                //Wait time can be changed to be more or less frequent
                 System.Threading.Thread.Sleep(1000);
             }
         }
