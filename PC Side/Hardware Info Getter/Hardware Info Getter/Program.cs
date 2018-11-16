@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.IO;
 using OpenHardwareMonitor.Hardware;
 namespace Get_CPU_Temp5
 {
@@ -97,11 +99,23 @@ namespace Get_CPU_Temp5
             //Console.WriteLine(GPU_Speed);
             //Console.WriteLine(GPU_Load);
             string[] outputs = {CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
-            System.IO.File.WriteAllLines(@"D:\WriteOutputs.txt", outputs);
+            //System.IO.File.WriteAllLines(@"D:\WriteOutputs.txt", outputs);
             computer.Close();
         }
         static void Main(string[] args)
         {
+            try
+            {
+                TcpClient tcpClient = new TcpClient();
+                tcpClient.Connect("raspberrypi.local", 22);
+                Stream stream = tcpClient.GetStream();
+                Console.WriteLine("Success!");
+            }
+            catch
+            {
+                Console.WriteLine("Failed");
+            }
+            
             while (true)
             {
                 GetSystemInfo();
