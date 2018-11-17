@@ -104,15 +104,26 @@ namespace Get_CPU_Temp5
             {
                 port = new SerialPort("COM5", 115200, Parity.None, 8, StopBits.One);
                 port.Open();
+                System.Threading.Thread.Sleep(500);
+                port.WriteLine("pi");
+                System.Threading.Thread.Sleep(500);
+                port.WriteLine("raspberry");
+                System.Threading.Thread.Sleep(500);
+                //port.WriteLine("sudo shutdown now");
+                //port.Close();
+                port.WriteLine("./test.out");
+                System.Threading.Thread.Sleep(500);
                 while (port.IsOpen)
                 {
                     string[] strings = GetSystemInfo();
                     for (int i = 0; i < strings.Length; i++)
                     {
-                        port.Write(strings[i]);
+                        port.WriteLine(strings[i]);
+                        Console.WriteLine(strings[i]);
                     }
                     System.Threading.Thread.Sleep(1000);
                 }
+                port.Close();
             }
             catch
             {
