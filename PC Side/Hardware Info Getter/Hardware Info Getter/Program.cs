@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.IO.Ports;
-using System.Net.Sockets;
+using System.Management;
+using System.Windows;
 using OpenHardwareMonitor.Hardware;
 namespace Get_CPU_Temp5
 {
@@ -100,9 +97,35 @@ namespace Get_CPU_Temp5
         }
         static void Main(string[] args)
         {
+            string portNum = "";
             try
             {
-                port = new SerialPort("COM5", 115200, Parity.None, 8, StopBits.One);
+                using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Caption like '%(COM%'"))
+                {
+                    var portnames = SerialPort.GetPortNames();
+                    var ports = searcher.Get().Cast<ManagementBaseObject>().ToList().Select(p => p["Caption"].ToString());
+
+                    var portList = portnames.Select(n => n + " - " + ports.FirstOrDefault(s => s.Contains(n))).ToList();
+
+                    foreach (string s in portList)
+                    {
+                        //Console.WriteLine(s);
+                        if(s.Contains("PI USB to Serial"))
+                        {
+                            portNum = s.Substring(0, s.IndexOf(" "));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                Console.Write("Well, that didn't work the first.");
+                Console.Read();
+            }
+            try
+            {
+                
+                port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
                 port.Open();
                 System.Threading.Thread.Sleep(500);
                 port.WriteLine("pi");
@@ -127,7 +150,8 @@ namespace Get_CPU_Temp5
             }
             catch
             {
-                Console.Write("Well, that didn't work.");
+                Console.Write("Well, that didn't work the second.");
+                Console.Read();
             }
         }
     }
