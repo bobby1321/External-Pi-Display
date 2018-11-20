@@ -109,7 +109,7 @@ namespace Get_CPU_Temp5
 
                     foreach (string s in portList)
                     {
-                        //Console.WriteLine(s);
+                        Console.WriteLine(s);
                         if(s.Contains("PI USB to Serial"))
                         {
                             portNum = s.Substring(0, s.IndexOf(" "));
@@ -132,8 +132,6 @@ namespace Get_CPU_Temp5
                 System.Threading.Thread.Sleep(500);
                 port.WriteLine("raspberry");
                 System.Threading.Thread.Sleep(500);
-                //port.WriteLine("sudo shutdown now");
-                //port.Close();
                 port.WriteLine("./test.out");
                 System.Threading.Thread.Sleep(500);
                 while (port.IsOpen)
