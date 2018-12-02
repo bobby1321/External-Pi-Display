@@ -57,7 +57,7 @@ namespace Get_CPU_Temp5
                             CPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString());
                             //CPU_Load = computer.Hardware[i].Sensors[j].Value;
                     }
-                    CPU_Speed = "" + (avgClockSum / coreTempSensorCount);
+                    CPU_Speed = "" + Math.Round((avgClockSum / coreTempSensorCount), 1);
                     //CPU_Speed = ((int)avgClockSum / coreTempSensorCount);
                 }
                 else if (computer.Hardware[i].HardwareType == HardwareType.GpuNvidia)
@@ -71,7 +71,7 @@ namespace Get_CPU_Temp5
                             GPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString());
                             //GPU_Load = computer.Hardware[i].Sensors[j].Value;
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name == "GPU Core")
-                            GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString());
+                            GPU_Speed = (Math.Round((float)computer.Hardware[i].Sensors[j].Value, 1).ToString());
                             //GPU_Speed = computer.Hardware[i].Sensors[j].Value;
                     }
                 }
@@ -86,12 +86,12 @@ namespace Get_CPU_Temp5
                             GPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString());
                             //GPU_Load = computer.Hardware[i].Sensors[j].Value;
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name == "GPU Core")
-                            GPU_Speed = (computer.Hardware[i].Sensors[j].Value.ToString());
+                            GPU_Speed = (Math.Round((float)computer.Hardware[i].Sensors[j].Value, 1).ToString());
                             //GPU_Speed = computer.Hardware[i].Sensors[j].Value;
                     }
                 }
             }
-            string[] outputs = {CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
+            string[] outputs = {" ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
             computer.Close();
             return outputs;
         }
@@ -124,7 +124,6 @@ namespace Get_CPU_Temp5
             }
             try
             {
-                
                 port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
                 port.Open();
                 System.Threading.Thread.Sleep(500);
