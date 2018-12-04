@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Management;
 using System.Windows;
 using OpenHardwareMonitor.Hardware;
+
 namespace Get_CPU_Temp5
 {
     class Program
@@ -97,6 +98,9 @@ namespace Get_CPU_Temp5
         }
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MyCustomApplicationContext());
             string portNum = "";
             try
             {
@@ -150,6 +154,32 @@ namespace Get_CPU_Temp5
                 Console.Write("Well, that didn't work the second.");
                 Console.Read();
             }
+        }
+    }
+
+    public class MyCustomApplicationContext : ApplicationContext
+    {
+        private NotifyIcon trayIcon;
+
+        public MyCustomApplicationContext()
+        {
+            // Initialize Tray Icon
+            trayIcon = new NotifyIcon()
+            {
+                Icon = Resources.AppIcon,
+                ContextMenu = new ContextMenu(new MenuItem[] {
+                new MenuItem("Exit", Exit)
+            }),
+                Visible = true
+            };
+        }
+
+        void Exit(object sender, EventArgs e)
+        {
+            // Hide tray icon, otherwise it will remain shown until user mouses over it
+            trayIcon.Visible = false;
+
+            Application.Exit();
         }
     }
 }
