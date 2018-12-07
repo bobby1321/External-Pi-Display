@@ -98,9 +98,9 @@ namespace Get_CPU_Temp5
         }
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MyCustomApplicationContext());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new MyCustomApplicationContext());
             string portNum = "";
             try
             {
@@ -128,7 +128,8 @@ namespace Get_CPU_Temp5
             }
             try
             {
-                port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
+                //port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
+                port = new SerialPort("COM7", 115200, Parity.None, 8, StopBits.One);
                 port.Open();
                 System.Threading.Thread.Sleep(500);
                 port.WriteLine("pi");
@@ -157,7 +158,7 @@ namespace Get_CPU_Temp5
         }
     }
 
-    public class MyCustomApplicationContext : ApplicationContext
+    /*public class MyCustomApplicationContext : ApplicationContext
     {
         private NotifyIcon trayIcon;
 
@@ -181,5 +182,5 @@ namespace Get_CPU_Temp5
 
             Application.Exit();
         }
-    }
+    }*/
 }

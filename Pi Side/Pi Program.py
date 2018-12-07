@@ -25,12 +25,11 @@ def endMyLife():
 
 # Raspberry Pi pin configuration:
 RST = 8
-# Note the following are only used with SPI:
 DC = 9
 SPI_PORT = 0
 SPI_DEVICE = 1
 
-disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST, dc=DC, spi=SPI.SpiDev(SPI_PORT,$
+disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST, dc=DC, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=8000000))
 
 # Initialize library.
 disp.begin()
