@@ -14,3 +14,4 @@ C:\Users\bapel\OneDrive\Documents\GitHub\External-Pi-Display\PC Side\Hardware In
 C:\Users\bapel\OneDrive\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Release\Hardware Info Getter.exe
 C:\Users\bapel\OneDrive\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Release\Hardware Info Getter.pdb
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Release\OpenHardwareMonitorLib.dll
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Release\Hardware Info Getter.csprojAssemblyReference.cache

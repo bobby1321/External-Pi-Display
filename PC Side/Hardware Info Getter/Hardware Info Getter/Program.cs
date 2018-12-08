@@ -128,8 +128,7 @@ namespace Get_CPU_Temp5
             }
             try
             {
-                //port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
-                port = new SerialPort("COM7", 115200, Parity.None, 8, StopBits.One);
+                port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
                 port.Open();
                 System.Threading.Thread.Sleep(500);
                 port.WriteLine("pi");
