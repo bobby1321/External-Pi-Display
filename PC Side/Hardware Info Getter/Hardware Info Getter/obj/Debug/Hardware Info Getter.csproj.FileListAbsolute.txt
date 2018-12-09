@@ -1,9 +1,10 @@
-C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\Hardware Info Getter.exe.config
-C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\Hardware Info Getter.exe
-C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\Hardware Info Getter.pdb
-C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\OpenHardwareMonitorLib.dll
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\WindowsFormsApp1.exe
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\bin\Debug\WindowsFormsApp1.pdb
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.csprojAssemblyReference.cache
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.csproj.GenerateResource.cache
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.csproj.CoreCompileInputs.cache
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.csproj.CopyComplete
-C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.exe
-C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.pdb
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\WindowsFormsApp1.exe
+C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\WindowsFormsApp1.pdb
