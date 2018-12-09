@@ -3,7 +3,9 @@ using System.Linq;
 using System.IO.Ports;
 using System.Management;
 using System.Windows;
+using System.Collections;
 using OpenHardwareMonitor.Hardware;
+using System.Collections.Generic;
 
 namespace Get_CPU_Temp5
 {
@@ -42,23 +44,23 @@ namespace Get_CPU_Temp5
             {
                 if (computer.Hardware[i].HardwareType == HardwareType.CPU)
                 {
-                    float avgClockSum = 0;
+                    List <Double> avgClockSum = new List<Double>();
                     int coreTempSensorCount = 0;
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature && computer.Hardware[i].Sensors[j].Name == "CPU Package")
                             CPU_Temp = (computer.Hardware[i].Sensors[j].Value.ToString());
-                            //CPU_Temp = computer.Hardware[i].Sensors[j].Value;
+                        //CPU_Temp = computer.Hardware[i].Sensors[j].Value;
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock && computer.Hardware[i].Sensors[j].Name != "Bus Speed")
-                        {
-                            avgClockSum += (float)computer.Hardware[i].Sensors[j].Value;
+                        { 
+                            avgClockSum.Add((double)computer.Hardware[i].Sensors[j].Value);
                             coreTempSensorCount++;
                         }
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load && computer.Hardware[i].Sensors[j].Name == "CPU Total")
                             CPU_Load = (computer.Hardware[i].Sensors[j].Value.ToString());
                             //CPU_Load = computer.Hardware[i].Sensors[j].Value;
                     }
-                    CPU_Speed = "" + Math.Round((avgClockSum / coreTempSensorCount), 1);
+                    CPU_Speed = "" + Math.Round(avgClockSum[0],1);
                     //CPU_Speed = ((int)avgClockSum / coreTempSensorCount);
                 }
                 else if (computer.Hardware[i].HardwareType == HardwareType.GpuNvidia)
@@ -124,7 +126,6 @@ namespace Get_CPU_Temp5
             catch
             {
                 Console.Write("Well, that didn't work the first.");
-                Console.Read();
             }
             try
             {
@@ -140,6 +141,7 @@ namespace Get_CPU_Temp5
                 while (port.IsOpen)
                 {
                     string[] strings = GetSystemInfo();
+                    Console.WriteLine("Howdy");
                     for (int i = 0; i < strings.Length; i++)
                     {
                         port.WriteLine(strings[i]);
@@ -152,7 +154,6 @@ namespace Get_CPU_Temp5
             catch
             {
                 Console.Write("Well, that didn't work the second.");
-                Console.Read();
             }
         }
     }
