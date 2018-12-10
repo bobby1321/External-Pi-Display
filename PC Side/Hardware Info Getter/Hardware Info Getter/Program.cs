@@ -270,7 +270,7 @@ namespace Hardware_Info_Getter
                 else if (sender == time24hrMenuItem && time24hrActive)
                 {
                     time24hrMenuItem.Checked = false;
-                    time24hrActive = true;
+                    time24hrActive = false;
                     timeActive = false;
                 }
             }

@@ -66,8 +66,6 @@ while run:
                 raw_input()
                 timestr = ""
 
-                
-        #print("Howdy")
 
         # Clear display.
         disp.clear()
