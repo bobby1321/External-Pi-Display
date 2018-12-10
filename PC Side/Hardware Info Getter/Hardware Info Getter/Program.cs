@@ -126,7 +126,7 @@ namespace Hardware_Info_Getter
                 exitMenuItem = new MenuItem("Exit", new EventHandler(Exit));
                 dateMenuItem = new MenuItem("Date", new EventHandler(Date));
                 dateMenuItem.Checked = true;
-                timeMenuItem = new MenuItem("Time", new EventHandler(Time));
+                timeMenuItem = new MenuItem("Time");
                 autoRebootMenuItem = new MenuItem("Auto Reboot After Exit", new EventHandler(AutoReboot));
                 autoRebootMenuItem.Checked = false;
                 time12hrMenuItem = new MenuItem("12-Hour", new EventHandler(Time24Hr));
@@ -213,18 +213,6 @@ namespace Hardware_Info_Getter
                 {
                     dateActive = true;
                     dateMenuItem.Checked = true;
-                }
-            }
-
-            void Time(object sender, EventArgs e)
-            {
-                if (timeActive)
-                {
-                    timeActive = false;
-                }
-                else
-                {
-                    timeActive = true;
                 }
             }
 
