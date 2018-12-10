@@ -16,6 +16,8 @@ namespace Hardware_Info_Getter
     static class Program
     {
         static SerialPort port;
+        static Boolean dateActive = true;
+        static Boolean timeActive = true;
         public class UpdateVisitor : IVisitor
         {
             public void VisitComputer(IComputer computer)
@@ -98,7 +100,7 @@ namespace Hardware_Info_Getter
                     }
                 }
             }
-            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load };
+            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, dateActive.ToString(), timeActive.ToString() };
             computer.Close();
             return outputs;
         }
@@ -106,15 +108,25 @@ namespace Hardware_Info_Getter
         class MyApplicationContext : ApplicationContext
         {
             NotifyIcon notifyIcon;
+            MenuItem configMenuItem;
             MenuItem exitMenuItem;
+            MenuItem dateMenuItem;
+            MenuItem timeMenuItem;
             Thread t2;
 
             public MyApplicationContext()
             {
                 notifyIcon = new NotifyIcon();
+                configMenuItem = new MenuItem("Configure...");
                 exitMenuItem = new MenuItem("Exit", new EventHandler(Exit));
+                dateMenuItem = new MenuItem("Date", new EventHandler(Date));
+                dateMenuItem.Checked = true;
+                timeMenuItem = new MenuItem("Time", new EventHandler(Time));
+                timeMenuItem.Checked = true;
+                configMenuItem.MenuItems.Add(dateMenuItem);
+                configMenuItem.MenuItems.Add(timeMenuItem);
                 notifyIcon.Icon = new Icon("hiss_B6r_icon.ico");
-                notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] {exitMenuItem});
+                notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] {configMenuItem, exitMenuItem});
                 notifyIcon.Visible = true;
                 t2 = new Thread(delegate ()
                 {
@@ -147,11 +159,14 @@ namespace Hardware_Info_Getter
                         port = new SerialPort(portNum, 115200, Parity.None, 8, StopBits.One);
                         port.Open();
                         System.Threading.Thread.Sleep(500);
+                        Console.WriteLine("pi");
                         port.WriteLine("pi");
                         System.Threading.Thread.Sleep(500);
                         port.WriteLine("raspberry");
+                        Console.WriteLine("raspberry");
                         System.Threading.Thread.Sleep(1000);
                         port.WriteLine("python something.py");
+                        Console.WriteLine("python something.py");
                         System.Threading.Thread.Sleep(500);
                         while (port.IsOpen)
                         {
@@ -164,6 +179,7 @@ namespace Hardware_Info_Getter
                             System.Threading.Thread.Sleep(1000);
                         }
                         port.Close();
+                        Application.Exit();
                     }
                     catch
                     {
@@ -173,9 +189,38 @@ namespace Hardware_Info_Getter
                 t2.Start();
             }
 
+            void Date(object sender, EventArgs e)
+            {
+                if (dateMenuItem.Checked)
+                {
+                    dateActive = false;
+                    dateMenuItem.Checked = false;
+                }
+                else
+                {
+                    dateActive = true;
+                    dateMenuItem.Checked = true;
+                }
+            }
+
+            void Time(object sender, EventArgs e)
+            {
+                if (timeMenuItem.Checked)
+                {
+                    timeActive = false;
+                    timeMenuItem.Checked = false;
+                }
+                else
+                {
+                    timeActive = true;
+                    timeMenuItem.Checked = true;
+                }
+            }
+
             void Exit(object sender, EventArgs e)
             {
                 notifyIcon.Visible = false;
+                port.WriteLine("sudo reboot");
                 t2.Abort();
                 Application.Exit();
             }

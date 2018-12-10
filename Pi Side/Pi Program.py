@@ -10,6 +10,7 @@ from PIL import ImageFont
 import threading
 import os
 import signal
+import datetime
 
 lastUpdate = time.time()
 run = True
@@ -45,12 +46,22 @@ while run:
                 disp.clear()
                 disp.display()
                 break
+        now = datetime.datetime.now()
         cpuTemp = "CPU Temp: " + raw_input() + u"\u00B0"
         cpuSpeed = "CPU Speed:" + raw_input() + " MHz"
         cpuLoad = "CPU Load: " + raw_input() + " %"
         gpuTemp = "GPU Temp: " + raw_input() + u"\u00B0"
         gpuSpeed = "GPU Speed:" + raw_input() + " MHz"
         gpuLoad = "GPU Load: " + raw_input() + " %"
+        if raw_input() == "True":
+                date = now.strftime("%m/%d/%y")
+        else:
+                date = ""
+        if raw_input() == "True":
+                timestr = now.strftime("%I:%M")
+        else:
+                timestr = ""
+                
         #print("Howdy")
 
         # Clear display.
@@ -66,6 +77,8 @@ while run:
         draw.text((0, 24), gpuTemp, font=font, fill=255)
         draw.text((0, 32), gpuSpeed, font=font, fill=255)
         draw.text((0, 40), gpuLoad, font=font, fill=255)
+        draw.text((0, 48), date, font=font, fill=255)
+        draw.text((64, 48), timestr, font=font, fill=255)
 
         # Display image.
         disp.image(image)

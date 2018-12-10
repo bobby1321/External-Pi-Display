@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1.Properties {
+﻿namespace Hardware_Info_Getter.Properties {
     
     
     // This class allows you to handle specific events on the settings class:
