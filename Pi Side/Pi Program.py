@@ -58,9 +58,14 @@ while run:
         else:
                 date = ""
         if raw_input() == "True":
-                timestr = now.strftime("%I:%M")
+                if raw_input() == "True":
+                        timestr = now.strftime("%H:%M")
+                else:
+                        timestr = now.strftime("%I:%M")
         else:
+                raw_input()
                 timestr = ""
+
                 
         #print("Howdy")
 

@@ -18,6 +18,8 @@ namespace Hardware_Info_Getter
         static SerialPort port;
         static Boolean dateActive = true;
         static Boolean timeActive = true;
+        static Boolean autoRebootActive = false;
+        static Boolean time24hrActive = false;
         public class UpdateVisitor : IVisitor
         {
             public void VisitComputer(IComputer computer)
@@ -100,7 +102,7 @@ namespace Hardware_Info_Getter
                     }
                 }
             }
-            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, dateActive.ToString(), timeActive.ToString() };
+            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, dateActive.ToString(), timeActive.ToString(), time24hrActive.ToString() };
             computer.Close();
             return outputs;
         }
@@ -112,6 +114,9 @@ namespace Hardware_Info_Getter
             MenuItem exitMenuItem;
             MenuItem dateMenuItem;
             MenuItem timeMenuItem;
+            MenuItem autoRebootMenuItem;
+            MenuItem time12hrMenuItem;
+            MenuItem time24hrMenuItem;
             Thread t2;
 
             public MyApplicationContext()
@@ -122,9 +127,17 @@ namespace Hardware_Info_Getter
                 dateMenuItem = new MenuItem("Date", new EventHandler(Date));
                 dateMenuItem.Checked = true;
                 timeMenuItem = new MenuItem("Time", new EventHandler(Time));
-                timeMenuItem.Checked = true;
+                autoRebootMenuItem = new MenuItem("Auto Reboot After Exit", new EventHandler(AutoReboot));
+                autoRebootMenuItem.Checked = false;
+                time12hrMenuItem = new MenuItem("12-Hour", new EventHandler(Time24Hr));
+                time12hrMenuItem.Checked = true;
+                time24hrMenuItem = new MenuItem("24-Hour", new EventHandler(Time24Hr));
+                time24hrMenuItem.Checked = false;
                 configMenuItem.MenuItems.Add(dateMenuItem);
                 configMenuItem.MenuItems.Add(timeMenuItem);
+                configMenuItem.MenuItems.Add(autoRebootMenuItem);
+                timeMenuItem.MenuItems.Add(time12hrMenuItem);
+                timeMenuItem.MenuItems.Add(time24hrMenuItem);
                 notifyIcon.Icon = new Icon("hiss_B6r_icon.ico");
                 notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] {configMenuItem, exitMenuItem});
                 notifyIcon.Visible = true;
@@ -205,22 +218,83 @@ namespace Hardware_Info_Getter
 
             void Time(object sender, EventArgs e)
             {
-                if (timeMenuItem.Checked)
+                if (timeActive)
                 {
                     timeActive = false;
-                    timeMenuItem.Checked = false;
                 }
                 else
                 {
                     timeActive = true;
-                    timeMenuItem.Checked = true;
+                }
+            }
+
+            void AutoReboot(object sender, EventArgs e)
+            {
+                if (autoRebootMenuItem.Checked)
+                {
+                    autoRebootActive = false;
+                    autoRebootMenuItem.Checked = false;
+                }
+                else
+                {
+                    autoRebootActive = true;
+                    autoRebootMenuItem.Checked = true;
+                }
+            }
+
+            void Time24Hr(object sender, EventArgs e)
+            {
+                if (!timeActive)
+                {
+                    timeActive = true;
+                    if (sender == time12hrMenuItem)
+                    {
+                        time24hrActive = false;
+                        time24hrMenuItem.Checked = false;
+                        time12hrMenuItem.Checked = true;
+                    }
+                    else if (sender == time24hrMenuItem)
+                    {
+                        time24hrActive = true;
+                        time24hrMenuItem.Checked = true;
+                        time12hrMenuItem.Checked = false;
+                    }
+                    return;
+                }
+                else if (sender == time12hrMenuItem && time24hrActive)
+                {
+                    time24hrActive = false;
+                    time24hrMenuItem.Checked = false;
+                    time12hrMenuItem.Checked = true;
+                }
+                else if (sender == time12hrMenuItem && !time24hrActive)
+                {
+                    time12hrMenuItem.Checked = false;
+                    time24hrActive = false;
+                    timeActive = false;
+                }
+                else if (sender == time24hrMenuItem && !time24hrActive)
+                {
+                    time24hrActive = true;
+                    time24hrMenuItem.Checked = true;
+                    time12hrMenuItem.Checked = false;
+                }
+                else if (sender == time24hrMenuItem && time24hrActive)
+                {
+                    time24hrMenuItem.Checked = false;
+                    time24hrActive = true;
+                    timeActive = false;
                 }
             }
 
             void Exit(object sender, EventArgs e)
             {
                 notifyIcon.Visible = false;
-                port.WriteLine("sudo reboot");
+                if (autoRebootActive)
+                {
+                    port.WriteLine("Stop");
+                    port.WriteLine("sudo reboot");
+                }
                 t2.Abort();
                 Application.Exit();
             }
