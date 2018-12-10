@@ -24,6 +24,7 @@ disp.begin()
 
 image = Image.new('1', (128, 64))
 draw = ImageDraw.Draw(image)
-draw.ellipse((32, 0, 96, 63), fill=1, outline=1)
+draw.rectangle((0, 0, 127, 63), fill=1, outline=1)
 disp.image(image)
 disp.display()
+
