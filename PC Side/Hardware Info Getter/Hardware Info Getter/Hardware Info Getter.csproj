@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>hiss_B6r_icon.ico</ApplicationIcon>
+    <ApplicationIcon>logo_C7B_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="hiss_B6r_icon.ico" />
+    <Content Include="logo_C7B_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

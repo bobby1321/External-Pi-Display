@@ -138,7 +138,7 @@ namespace Hardware_Info_Getter
                 configMenuItem.MenuItems.Add(autoRebootMenuItem);
                 timeMenuItem.MenuItems.Add(time12hrMenuItem);
                 timeMenuItem.MenuItems.Add(time24hrMenuItem);
-                notifyIcon.Icon = new Icon("hiss_B6r_icon.ico");
+                notifyIcon.Icon = new Icon("logo_C7B_icon.ico");
                 notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] {configMenuItem, exitMenuItem});
                 notifyIcon.Visible = true;
                 t2 = new Thread(delegate ()
