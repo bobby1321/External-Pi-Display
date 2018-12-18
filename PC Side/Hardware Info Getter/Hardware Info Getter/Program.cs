@@ -48,6 +48,8 @@ namespace Hardware_Info_Getter
             String GPU_Temp = "";
             String GPU_Load = "";
             String GPU_Speed = "";
+            String date = "";
+            String time = "";
             for (int i = 0; i < computer.Hardware.Length; i++)
             {
                 if (computer.Hardware[i].HardwareType == HardwareType.CPU)
@@ -102,7 +104,24 @@ namespace Hardware_Info_Getter
                     }
                 }
             }
-            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, dateActive.ToString(), timeActive.ToString(), time24hrActive.ToString() };
+            if (timeActive)
+            {
+                if (time24hrActive)
+                {
+                    time = DateTime.Now.ToString("HH:mm");
+                }
+                else if (!time24hrActive)
+                {
+                    time = DateTime.Now.ToString("hh:mm");
+                }
+            }
+
+            if (dateActive)
+            {
+                date = DateTime.Now.ToString("MM/dd/yy");
+            }
+
+            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, date, time };
             computer.Close();
             return outputs;
         }
