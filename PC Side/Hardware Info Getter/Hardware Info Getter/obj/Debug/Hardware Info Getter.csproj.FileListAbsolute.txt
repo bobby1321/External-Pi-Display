@@ -7,3 +7,6 @@ C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware_Info_Getter.Properties.Resources.resources
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.exe
 C:\Users\bapel\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.pdb
+C:\Users\bapel\OneDrive\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.csprojAssemblyReference.cache
+C:\Users\bapel\OneDrive\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.csproj.GenerateResource.cache
+C:\Users\bapel\OneDrive\Documents\GitHub\External-Pi-Display\PC Side\Hardware Info Getter\Hardware Info Getter\obj\Debug\Hardware Info Getter.exe

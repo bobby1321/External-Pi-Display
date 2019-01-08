@@ -59,15 +59,5 @@ namespace Hardware_Info_Getter.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        public static System.Drawing.Icon hiss_B6r_icon {
-            get {
-                object obj = ResourceManager.GetObject("hiss_B6r_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
     }
 }

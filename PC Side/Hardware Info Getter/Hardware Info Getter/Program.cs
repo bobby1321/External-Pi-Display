@@ -55,8 +55,8 @@ namespace Hardware_Info_Getter
             String GPU_Temp = "";
             String GPU_Load = "";
             String GPU_Speed = "";
-
-            //Cycle through all of the sensor arrays detected in the system
+            String date = "";
+            String time = "";
             for (int i = 0; i < computer.Hardware.Length; i++)
             {
                 //If sensor array is a CPU sensor array
@@ -127,8 +127,24 @@ namespace Hardware_Info_Getter
                 }
             }
 
-            //String array of outputs to be sent to the pi
-            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, dateActive.ToString(), timeActive.ToString(), time24hrActive.ToString() };
+            if (timeActive)
+            {
+                if (time24hrActive)
+                {
+                    time = DateTime.Now.ToString("HH:mm");
+                }
+                else if (!time24hrActive)
+                {
+                    time = DateTime.Now.ToString("hh:mm");
+                }
+            }
+
+            if (dateActive)
+            {
+                date = DateTime.Now.ToString("MM/dd/yy");
+            }
+
+            string[] outputs = { " ", CPU_Temp, CPU_Speed, CPU_Load, GPU_Temp, GPU_Speed, GPU_Load, date, time };
             computer.Close();
             return outputs;
         }
@@ -176,7 +192,8 @@ namespace Hardware_Info_Getter
                 timeMenuItem.MenuItems.Add(time12hrMenuItem);
                 timeMenuItem.MenuItems.Add(time24hrMenuItem);
 
-                notifyIcon.Icon = new Icon("hiss_B6r_icon.ico"); //Change to set custom icon
+                notifyIcon.Icon = new Icon("logo_C7B_icon.ico");
+
                 notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] {configMenuItem, exitMenuItem});
                 notifyIcon.Visible = true;
 
